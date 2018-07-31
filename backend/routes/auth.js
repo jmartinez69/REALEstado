@@ -79,7 +79,7 @@ authRoutes.post("/signup", (req, res, next) => {
       email,
       confirmationCode: hasConfCode.replace(/\//gi, "")
     });
-
+    console.log(`Usuario a crear: ${newUser}`)
     newUser.save((err) => {
       if (err) {
         res.status(400).json({ message: 'Algo ha ido mal con la creación del usuario' });
@@ -108,7 +108,8 @@ authRoutes.get("/confirm/:confirmationCode", (req, res, next) => {
       User.findByIdAndUpdate(user._id,{ confirmed : true })
       .then(() =>  { 
         console.log(`Usuario ${user._id} ha sido activado`);
-        res.status(200).json({ message: 'Usuario activado satisfactoriamente' });  
+//        res.status(200).json({ message: 'Usuario activado satisfactoriamente' }); 
+          res.render("auth/confirmation", { username }); 
       })
       .catch (err => console.log(`Error al activar usuario: ${err}`))
     }
