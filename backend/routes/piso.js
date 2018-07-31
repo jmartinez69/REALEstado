@@ -13,12 +13,34 @@ pisoRoutes.get("/", (req, res, next) => {
     }else {
       res.status(200).json(listaPisos);
     }
-;
+
   })
   .catch (err => {
         console.log(err);
         res.status(400).json({ message: 'Algo ha salido mal con la busqueda del pisos' });
       })
 });
+
+pisoRoutes.get("/:id", (req, res, next) => {
+  const user = res.locals.user;
+  const idPiso= req.params.id;
+
+  Piso.findById({_id:idPiso}).then(piso => {
+    if (piso === null) {
+      res.status(400).json({ message: 'Problema al conseguir el piso' });
+    }else {
+      res.status(200).json(piso);
+    }
+
+  })
+  .catch (err => {
+        console.log(err);
+        res.status(400).json({ message: 'Algo ha salido mal con la busqueda del piso' });
+      })
+
+});
+
+
+
 
 module.exports = pisoRoutes;

@@ -1,0 +1,23 @@
+.Ironhack {
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;  
+  justify-content: center;
+}
+.container {
+  display: flex;
+  justify-content: left;
+}
+.infoContainer {
+  padding: 50px 0px 0px 20px;
+  width: 30%;
+}
+
+.pisoContainer{
+  width: 35%;
+
+}
+.pisoContainer img {
+  width: 100%;
+  object-fit: cover;
+}

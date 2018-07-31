@@ -1,0 +1,19 @@
+<div class="Ironhack">
+  <h4><img src="assets/Ironhack.png">
+    <h3>Pisos REALEstado</h3>
+  </h4>
+</div>
+<br><br>
+<div class="pisosContainer">
+  <div *ngFor="let piso of listaPisos">
+     <div class="pisoContainer">
+
+         <h4>Localidad {{piso.direccion.localidad}}</h4>
+         <p>{{piso.tipo | titlecase}} en {{piso.proposito}},  Precio: {{piso.precio | currency:'EUR'}}</p>
+         <img src="{{piso.fotos[0]}}"><br>
+         <a  [routerLink]="['/piso',piso.id]">Ir a detalle</a>
+         <br><br>
+     </div>
+
+  </div>
+</div>

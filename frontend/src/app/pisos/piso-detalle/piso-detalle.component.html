@@ -1,0 +1,36 @@
+<div class="Ironhack">
+  <h4><img src="assets/Ironhack.png">
+    <h3>REALEstado</h3>
+  </h4>
+</div><br><br>
+<div class="container">
+<div class="pisoContainer">
+  <p> {{pisoDetalle}} - <b>{{movieSelected.title}}</b></p>
+  <img src="{{pisoDetalle.fotos[0]}}" alt="Piso">
+</div>
+<div class="infoContainer">
+    <span><b>Genres:</b> <br>
+        <span *ngFor="let genre of pisoDetalle.genres">
+          <span>{{genre}}</span><br>
+        </span>
+    </span><br>
+    <span>
+      <b>Year:</b> {{pisoDetalle.year}}
+    </span><br><br>
+    <span>
+        <b>Director:</b> {{pisoDetalle.director}}
+    </span><br><br>
+    <span><b>Actors:</b> </span><br>
+    <span *ngFor="let actor of pisoDetalle.actors">
+        <span>{{actor}}</span><br>
+    </span><br>
+    <span><b>Schedule:</b> </span><br>
+    <span *ngFor="let horarios of pisoDetalle.hours">
+        <span>{{horarios}}</span><br>
+    </span><br>
+    <span>
+        <b>Synopsis</b> <br>{{pisoDetalle.synopsis}}
+    </span><br><br>
+    <a [routerLink]="['']">Go Home</a>    
+</div>
+</div>

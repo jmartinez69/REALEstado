@@ -1,7 +1,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
-const Piso = require("../models/piso");
-
+const Piso = require("../models/Piso");
+const User = require("../models/User");
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
@@ -126,49 +126,18 @@ Piso.create(pisos, (err, data) => {
   if (err) {
     throw err;
   }
-})
-  .then(() => {
-    console.log("Usuarios creados");
-    User.findOne({ username: "Giorgio" }).then(user => {
-      Curso.create(cursos, (err, dataCursos) => {
-        if (err) {
-          throw err;
-        }
-      })
-        .then(() => {
-          console.log("Cursos creados");
-          Curso.updateMany({}, { profesor: user._id }).then(answer => {
-            Aula.create(aulas, (err, data) => {
-              if (err) {
-                throw err;
-              }
-            })
-              .then(answer => {
-                console.log("Aulas creadas");
-                Aula.updateMany({}, { idProfesor: user._id }).then(() => {
-                  console.log("Asignado profesor");
-                  User.find({ username: { $ne: "Giorgio" } }).then(users => {
-                    for (var j = 0; j < users.length; j++) {
-                      userID = users[j]._id;
-                      Aula.updateMany({}, { $push: { inscritos:  userID } }).then (()=> {console.log("OK")});
-//                      Aula.updateMany({}, { $push: { asistentes:  userID } }).then (()=> {console.log("OK2")});
-                    }
-                    Curso.findOne({}).then(curso=>{Aula.updateMany({}, {idCurso : curso}).then(console.log("curso OK"))})
-                    setTimeout(()=>{mongoose.disconnect(); console.log("desconectado")},4000);            
-                  });
-              });
-
-            })
-          .catch(err => {
-                console.log("ERROR AULAS:" + err);
-          });
-        });
-    })
-    .catch(err => {
-    console.log("ERROR CURSO:" + err);
-    });
-    });
   })
-  .catch(err => {
-    console.log("ERROR USER:" + err);
-  }); 
+  .then(() => {
+    console.log("Pisos creados");
+    User.findOne({}).then(user => {
+          Piso.updateMany({}, { idUser: user._id }).then(answer => {
+            console.log("Usuarios actualizados");
+            mongoose.disconnect(); 
+            console.log("desconectado") });
+          })
+          .catch(err => {
+                console.log("ERROR ACTUALIZANDO PISOS:" + err);
+          });
+  })
+
+        

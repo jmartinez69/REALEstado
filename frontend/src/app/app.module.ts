@@ -10,12 +10,20 @@ import { AppComponent } from './app.component';
 import { REsessionService } from './resession.service';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { PisosListComponent } from './pisos/pisos-list/pisos-list.component';
+import { PisoDetalleComponent } from './pisos/piso-detalle/piso-detalle.component';
+import { REPisosService } from './services/repisos.service';
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    PisosListComponent,
+    PisoDetalleComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +31,8 @@ import { SignupComponent } from './auth/signup/signup.component';
     FormsModule,
     HttpModule
   ],
-  providers: [REsessionService],
+  providers: [REsessionService,
+              REPisosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
