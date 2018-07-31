@@ -25,6 +25,7 @@ export class REPisosService {
       catchError(e => {console.log("Error trayendo la lista de inmuebles!"); return of(e)})
     );
   }
+  
   getPiso(id: string){
     return this.http.get(`${BASEURL}/pisos/${id}`).pipe(
       map( (res:Response) => {

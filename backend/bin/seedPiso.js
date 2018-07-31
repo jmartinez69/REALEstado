@@ -28,7 +28,7 @@ mongoose.connect(DATABASE);
   descripcion: String,
   tipo: { type: String, enum: ['piso', 'casa', 'duplex', 'atico'] },
   planta: Number,
-  carasteristicas: { tamanom2: Number,
+  caracteristicas: { tamanom2: Number,
                       numHab: Number,
                       numBan: Number},
   fechaPublicacion: Date,
@@ -52,7 +52,7 @@ const pisos = [
     precio: 670,
     descripcion: "Estudio en alquiler en Calle de Francisco Vivancos, situado en el distrito de CHAMARTIN, Barrio de Prosperidad, en la planta 2ª. Es un piso luminoso que tiene 30 m2, cocina equipada, 1 baño, aire acondicionado, ventanas climalit. Está situado en una zona tranquila con todos los servicios disponibles para la vida diaria, supermercados, colegios, restaurantes, bares.. . Se encuentra a pocos metros del metro de Alfonso XIII además esta muy cercano a varias lineas de autobús.",
     tipo: "piso",
-    carasteristicas: { tamanom2: 30, numHab: 1, numBan: 1 },
+    caracteristicas: { tamanom2: 30, numHab: 1, numBan: 1 },
     fechaPublicacion: fechaToday,    
   },
   {
@@ -64,7 +64,7 @@ const pisos = [
     precio: 900,
     descripcion: "Este piso se encuentra en Calle de la Constancia, situado Prosperidad, en el distrito de CHAMARTIN, es una planta 3, tiene 60 m2 y dispone de salón, cocina amueblada, 2 habitaciones y 1 baño. Se alquila amueblado, con gas natural y calefacción central.",
     tipo: "piso",
-    carasteristicas: { tamanom2: 60, numHab: 2, numBan: 1 },
+    caracteristicas: { tamanom2: 60, numHab: 2, numBan: 1 },
     fechaPublicacion: fechaToday,    
   },
   {
@@ -76,7 +76,7 @@ const pisos = [
     precio: 348000,
     descripcion: "Frente a Parque Tierno Galván, zona residencial muy tranquila. Año 1997. Edificio con ascensor y acceso minusválidos. Piso en buen estado, todas las estancias son exteriores muy luminoso con grandes ventanales. SUPERFICIES: 89 m2 construidos según escritura.  88 m2 metros (74 m2 de vivienda + 14 m2 de elementos comunes) según catastro.  Distribución muy cómoda y cuadrada sin pasillos.  Salón-comedor 20 mt. Cocina independiente amueblada y equipada con electrodomésticos. Los dos dormitorios y el hall tienen armarios empotrados. Baño con bañera y ventana. Vistas muy buenas y muy despejadas al parque de Tierno Galván.  Terraza COMUNITARIA en ático. Zona de fácil aparcamiento. Opción a dejar algunos muebles.  Calefacción y agua caliente gas natural individual. Splits de aire acondicionado. Videoportero. ",
     tipo: "piso",
-    carasteristicas: { tamanom2: 88, numHab: 2, numBan: 1 },
+    caracteristicas: { tamanom2: 88, numHab: 2, numBan: 1 },
     fechaPublicacion: fechaToday,    
   },
   {
@@ -88,7 +88,7 @@ const pisos = [
     precio: 257500,
     descripcion: "FINCAS MADRID vende en el barrio de los Metales, una de las mejores zonas de Madrid, en urbanizacion privada piso seminuevo de 1 dormitorio con armario empotrado, amplio salón, impecable estado de conservación, todo exterior muy luminoso y tranquilo, excelente orientación, plaza de garaje con acceso directo, trastero, zonas comunes con piscina gimnasio sauna, vigilancia 24 h. Excelente comunicación a escasos metros del cercanias autobuses y metro. Es un barrio consolidado con supermercados Mercadona, Ahorramás, Simply.. . No dejes de visitarlo.",
     tipo: "piso",
-    carasteristicas: { tamanom2: 46, numHab: 1, numBan: 1 },
+    caracteristicas: { tamanom2: 46, numHab: 1, numBan: 1 },
     fechaPublicacion: fechaToday,    
   },
   {
@@ -100,7 +100,7 @@ const pisos = [
     precio: 1150,
     descripcion: "Piso exterior de 2 dormitorios en calle Antracita, con salón, cocina amueblada y equipada con electrodomésticos, 1 baño completo, 1 aseo, tendedero cerrado y terraza. Suelos de tarima, ventanas climalit, puertas de roble, calefacción de gas natural y aire acondicionado. Plaza de garaje y trastero incluidos. Finca con ascensor, portero físico, piscina interior climatizada y exterior, gimnasio, jardines, zona infantil. Gastos de comunidad incluidos en el precio. Metro Arganzuela-Legazpi y paradas de autobuses muy cercanas.",
     tipo: "piso",
-    carasteristicas: { tamanom2: 95, numHab: 2, numBan: 2 },
+    caracteristicas: { tamanom2: 95, numHab: 2, numBan: 2 },
     fechaPublicacion: fechaToday,    
   },
   {
@@ -112,7 +112,7 @@ const pisos = [
     precio: 750,
     descripcion: "Piso exterior en segunda planta con ascensor. Dispone de 1 dormitorio amplio con armario empotrado, salón, cocina americana y baño completo. El piso se alquila tal y como se ve en las fotos. Tiene suelos de parquet, paredes de gotelet y ventanas de climalit. Plaza de garaje incluida en el precio. La urbanización cuenta con portero físico, piscina y zonas verdes. Situado en la zona conocida como 'Los Puertos', en Legazpi, se encuentra muy próximo a Madrid Río y Parque Tierno Galván. Comunicado mediante autobuses (62, T32) y metro Legazpi (L3-L6).",
     tipo: "piso",
-    carasteristicas: { tamanom2: 95, numHab: 1, numBan: 1 },
+    caracteristicas: { tamanom2: 95, numHab: 1, numBan: 1 },
     fechaPublicacion: fechaToday,    
   }
 ];

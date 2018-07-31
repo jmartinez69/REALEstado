@@ -17,6 +17,8 @@ export class PisoDetalleComponent implements OnInit {
     .subscribe((params) => this.pisoID = params['id']);
     service.getPiso(this.pisoID).subscribe( piso => {    
       this.pisoDetalle = piso;
+      console.log("A continuacion piso detalle =========")
+      console.log(this.pisoDetalle);
       });
     };
   
