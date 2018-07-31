@@ -28,7 +28,7 @@ export class REsessionService {
   }
 
   isLogged(){
-    return this.http.get(`${BASEURL}/api/auth/loggedin`,this.options).pipe(
+    return this.http.get(`${BASEURL}/auth/loggedin`,this.options).pipe(
       map( (res:Response) => {
         this.user = res.json();
         console.log(`Login automático de ${this.user.username}`);
@@ -47,7 +47,7 @@ export class REsessionService {
   }
 
   signup(username:string, password:string, email: string): Observable<object>{
-    return this.http.post(`${BASEURL}/api/auth/signup`,{username,password, email},this.options).pipe(
+    return this.http.post(`${BASEURL}/auth/signup`,{username,password, email},this.options).pipe(
       map( (res:Response) => {
         let data = res.json();
         console.log(`Signup: la función retorno el siguiente valor: ${data}`)
@@ -60,7 +60,7 @@ export class REsessionService {
   }
 
   login(username:string, password:string): Observable<object>{
-    return this.http.post(`${BASEURL}/api/auth/login`,{username,password},this.options).pipe(
+    return this.http.post(`${BASEURL}/auth/login`,{username,password},this.options).pipe(
       map( (res:Response) => {
         let user = res.json();
         this.user = user;
@@ -71,7 +71,7 @@ export class REsessionService {
   }
 
   logout(){
-    return this.http.get(`${BASEURL}/api/auth/logout`,this.options).pipe(
+    return this.http.post(`${BASEURL}/auth/logout`,this.options).pipe(
       map( (res:Response) => {
         this.user = null;
       }),

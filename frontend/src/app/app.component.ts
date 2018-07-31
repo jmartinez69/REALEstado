@@ -7,7 +7,7 @@ import { REsessionService } from './resession.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'REALEstado';
   constructor(private sessionService:REsessionService) { }
 
   logout(){
