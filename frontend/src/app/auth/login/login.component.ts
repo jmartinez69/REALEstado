@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { REsessionService } from '../../resession.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { REsessionService } from '../../resession.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public service: REsessionService) { }
+  constructor(public service: REsessionService, public router: Router) { }
 
   ngOnInit() {
   }
@@ -16,6 +17,9 @@ export class LoginComponent implements OnInit {
     console.log("login....");
     this.service.login(username,password).subscribe( user => {
       console.log(user);
+      const lat = 40.3925321;
+      const lon =-3.7004609; 
+      this.router.navigate([""]);
     });
   }
 }

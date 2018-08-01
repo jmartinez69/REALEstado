@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { REPisosService } from '../../services/repisos.service';
+import { REsessionService} from '../../resession.service'
 
 @Component({
   selector: 'app-pisos-list',
@@ -9,10 +10,12 @@ import { REPisosService } from '../../services/repisos.service';
 export class PisosListComponent implements OnInit {
 
   listaPisos: Array<any> = [];
+
   constructor(public service: REPisosService) { this.listarPisos();}
 
   ngOnInit() {
   }
+
   listarPisos(){
     this.service.getListPisos().subscribe( lista => {    
       this.listaPisos=lista;

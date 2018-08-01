@@ -10,11 +10,11 @@
 }
 .infoContainer {
   padding: 50px 0px 0px 20px;
-  width: 30%;
+  width: 45%;
 }
 
 .pisoContainer{
-  width: 35%;
+  width: 45%;
 
 }
 .pisoContainer img {
@@ -23,4 +23,7 @@
 }
 .fotos {
   width: 30%;
+}
+agm-map {
+  height: 300px;
 }

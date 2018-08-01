@@ -13,8 +13,12 @@ const pisoSchema = new Schema({
                 numero: Number,
                 planta: Number,
                 numPiso: String} ,
-  gelocalizacion: { lat: Number,
-                    long: Number},
+  location: {
+              type: {
+                      type: String
+                  },
+              coordinates: [Number]
+              },
   fotos: [{type: String}],
   precio: Number,
   descripcion: String,
@@ -23,13 +27,17 @@ const pisoSchema = new Schema({
                       numHab: Number,
                       numBan: Number},
   fechaPublicacion: Date,
-  activo: { type: Boolean, default: true },
+  activo: { type: Boolean, default: true }
 
 }, {
   timestamps: {
     createdAt: 'created_at',
     updatedAt: 'updated_at'
   }
+});
+
+pisoSchema.index({
+  location: '2dsphere'
 });
 
 const Piso = mongoose.model('Piso', pisoSchema);

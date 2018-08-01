@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 
 import { RouterModule } from '../../node_modules/@angular/router';
 import { routes } from './routes';
@@ -13,6 +13,11 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { PisosListComponent } from './pisos/pisos-list/pisos-list.component';
 import { PisoDetalleComponent } from './pisos/piso-detalle/piso-detalle.component';
 import { REPisosService } from './services/repisos.service';
+
+
+import { AgmCoreModule } from '@agm/core';
+//mport { GoogleMapsAPIWrapper } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 
 
 
@@ -29,7 +34,11 @@ import { REPisosService } from './services/repisos.service';
     BrowserModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    HttpModule
+    HttpModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyClr_fVK41OBJxuab_HEI3I30pcijqHB7E'
+    }),
+    AgmSnazzyInfoWindowModule
   ],
   providers: [REsessionService,
               REPisosService],

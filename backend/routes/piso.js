@@ -21,6 +21,30 @@ pisoRoutes.get("/", (req, res, next) => {
       })
 });
 
+pisoRoutes.post("/", (req, res, next) => {
+  const { lat, lon } = req.body;
+  Piso.find(   {
+     location:
+       { $near:
+          {
+            $geometry: { type: "Point",  coordinates: [ lat, lon ] },
+            $maxDistance: 5000
+          }
+       }
+   }).then(listaPisos => {
+    if (listaPisos === null) {
+      res.status(400).json({ message: 'Lista de pisos vacia. Algo no anda bien con la BD' });
+    }else {
+      res.status(200).json(listaPisos);
+    }
+
+  })
+  .catch (err => {
+        console.log(err);
+        res.status(400).json({ message: 'Algo ha salido mal con la busqueda del pisos' });
+      })
+});
+
 pisoRoutes.get("/:id", (req, res, next) => {
   const user = res.locals.user;
   const idPiso= req.params.id;
