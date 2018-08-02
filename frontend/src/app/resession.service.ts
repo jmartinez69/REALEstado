@@ -24,9 +24,17 @@ export class REsessionService {
 
 
   constructor(private http:Http) {
-    this.isLogged().subscribe();
+   // this.isLogged().subscribe();
   }
 
+  userIsLogged():Boolean {
+    if (this.user){
+      return true;
+    } 
+    else {
+      return false;
+    }
+  }
   isLogged(){
     return this.http.get(`${BASEURL}/auth/loggedin`,this.options).pipe(
       map( (res:Response) => {

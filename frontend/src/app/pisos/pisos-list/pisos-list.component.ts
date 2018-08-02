@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { REPisosService } from '../../services/repisos.service';
-import { REsessionService} from '../../resession.service'
+
 
 @Component({
   selector: 'app-pisos-list',
