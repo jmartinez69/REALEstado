@@ -1,11 +1,22 @@
-<form>
-  <h2> Login </h2>
-  <label> Username </label>
-  <input type="text" [(ngModel)]="username" name="username"/>
-  <br>
-  <label> Password </label>
-  <input type="password" [(ngModel)]="password" name="password"/>
-
-  <button (click)="login(username,password)"> login </button>
-</form>
-<p class="error"> {{ error }} </p>
+<div class="container">
+    <div class="row justify-content-center ">
+      <div class="col-5 panels">
+          <h4> Login</h4>
+          <form>
+            <div class="form-group">
+              <label> Nombre de usuario </label>
+              <input type="name" [(ngModel)]="username" class="form-control" name="username" id="username" aria-describedby="emailHelp" placeholder="Nombre de usuario">
+            </div>
+            <div class="form-group">
+              <label> Contraseña </label>
+              <input class="form-control" placeholder="Contraseña" type="password" [(ngModel)]="password" name="password"/>
+            </div>
+            <button (click)="login(username,password)" class="btn btn-primary buttonCenter"> login </button>
+          </form>
+          <p class="account-message">No tienes cuenta todavía? <a  [routerLink]="['/signup']">Registrate en la plataforma</a>
+          </p>
+          <p class="error"> {{ error }} </p>
+        </div>
+    </div>
+  </div>
+      
