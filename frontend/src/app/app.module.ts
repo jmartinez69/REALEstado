@@ -18,7 +18,8 @@ import { REPisosService } from './services/repisos.service';
 import { AgmCoreModule } from '@agm/core';
 //mport { GoogleMapsAPIWrapper } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
-
+import { LocalizameService } from './services/localizame.service';
+import { FilterPipe } from './pipes/filter';
 
 
 
@@ -28,7 +29,8 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
     LoginComponent,
     SignupComponent,
     PisosListComponent,
-    PisoDetalleComponent
+    PisoDetalleComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
     AgmSnazzyInfoWindowModule
   ],
   providers: [REsessionService,
-              REPisosService],
+              REPisosService,
+              LocalizameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

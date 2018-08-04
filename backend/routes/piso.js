@@ -6,7 +6,6 @@ const User = require("../models/User");
 const Piso = require("../models/Piso");
 
 pisoRoutes.get("/", (req, res, next) => {
-  console.log('aaaaaaa')
 
   Piso.find({}).then(listaPisos => {
     if (listaPisos === null) {
@@ -93,34 +92,22 @@ fechaPublicacion: Date,
 */
 
 pisoRoutes.post("/add", (req, res, next) => {
-  const fechaPublicacion = new Date();
-  const idUser = req.user._id;
-  const { proposito, contacto, direccion, location, fotos, 
-          precio, descripcion, tipo, caracteristicas} = req.body;
- 
-  // if (username === "" || password === "") {
-  //   res.status(400).json({ message: 'Usuario o Contraseña vacía' });
-  //   return;
-  // }
 
-  // User.findOne({ username }, "username", (err, user) => {
-  //   if (user !== null) {
-  //     res.status(400).json({ message: 'El nombre de usuario ya existe' });
-  //     return;
-  //   }
-
-    const newPiso = new Piso({
-      idUser, proposito, contacto, direccion, location, fotos, 
-      precio, descripcion, tipo, caracteristicas, fechaPublicacion
-    });
-    console.log(`Piso  a crear: ${newPiso}`)
-    newPiso.save((err) => {
-      if (err) {
-        res.status(400).json({ message: 'Algo ha ido mal con la creación del usuario' });
-      } else{
-        res.status(200).json(newPiso);       
-      }
-    });
+  const {piso, user} = req.body;
+  piso.fechaPublicacion = new Date();
+  piso.idUser = user._id;
+  console.log("este es el user:" + piso.idUser);
+  const newPiso = new Piso(piso);
+  console.log("Piso a crear");
+  console.log(newPiso);
+  newPiso.save((err) => {
+    if (err) {
+      console.log(err);
+      res.status(400).json({ message: 'Algo ha ido mal con la creación del piso' });
+    } else{
+      res.status(200).json(newPiso);       
+    }
+  });
   });
 
 

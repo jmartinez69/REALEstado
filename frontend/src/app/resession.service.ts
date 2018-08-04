@@ -10,6 +10,7 @@ const {BASEURL} = environment;
 
 interface UserObject{
   username:string,
+  avatar: string
 }
 
 
@@ -71,8 +72,12 @@ export class REsessionService {
     return this.http.post(`${BASEURL}/auth/login`,{username,password},this.options).pipe(
       map( (res:Response) => {
         let user = res.json();
+
         this.user = user;
+        console.log("El login devuelve lo siguiente ===");
+        console.log(this.user);
         return this.user;
+
       }),
       catchError( e => of(this.errorHandler(e)))
     )

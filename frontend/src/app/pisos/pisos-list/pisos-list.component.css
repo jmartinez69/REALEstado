@@ -19,3 +19,26 @@
   object-fit: cover;
 
 }
+.filtro {
+  position: fixed;
+  border-radius: 25px;
+  border: 2px solid rgb(144, 146, 141);
+  padding: 20px; 
+  width: 200px;
+  height: 400px;   
+}
+
+.addPisoForm {
+  border-radius: 25px;
+  border: 2px solid rgb(144, 146, 141);
+  padding: 20px; 
+}
+
+.botonAddPiso {
+  background-color: darkcyan;
+  object-position: right;
+}
+.txtArea{
+  width: 122vh;
+  height: 40vh;
+}

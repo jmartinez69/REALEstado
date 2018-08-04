@@ -13,8 +13,9 @@ export class AppComponent {
   constructor(public sessionService:REsessionService, public router: Router, public pisosService: REPisosService) { }
 
   logout(){
-    this.sessionService.logout().subscribe();
-    let that=this;
-    this.router.navigate([""]);
+    this.sessionService.logout().subscribe(() => {
+      this.pisosService.getListPisos();
+      this.router.navigate([""]);
+    });
   }
 }

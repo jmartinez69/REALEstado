@@ -1,15 +1,120 @@
+<div class="filtro" *ngIf="filtroEnable == true" >
+    <h4>Filtro</h4>
+    <label>Tipo:         </label>
+    <input [(ngModel)]="patternTipo">
+    <br>
+    <label>Proposito:    </label>
+    <input [(ngModel)]="patternProp">
+    <br>    
+    <label>Localidad:    </label>
+    <input [(ngModel)]="patternLoc">
+    <br>
+    <label>Calle:         </label>
+    <input [(ngModel)]="patternCalle">
+    <br>
+    <label>Habitaciones hasta: </label>
+    <input type="number"   [(ngModel)]="patternHab">
+    <br>       
+    <label>Baños hasta: </label>
+    <input type="number"   [(ngModel)]="patternBan">
+    <br> 
+    <label>Precio hasta: </label>
+    <input type="number"   [(ngModel)]="patternPrecio">
+    <br> 
+  </div><br><br>
+
+
 <div class="Ironhack">
   <h4><img src="assets/Ironhack.png">
     <h3>Pisos REALEstado</h3>
   </h4>
 </div>
-<br><br>
-<div class="pisosContainer">
-  <div *ngFor="let piso of listaPisos">
-     <div class="pisoContainer">
 
+
+
+<div class="addPisoForm" *ngIf="formEnable == true && newPiso">
+  <form  name="formaPiso">
+        <button class="botonAddPiso" (click)="addNewPiso()" value="publicar">Publicar</button>
+        <div>
+            <label for="proposito">Proposito: </label>
+            <select size="1" [(ngModel)]="newPiso.proposito" name="proposito" value="Alquiler">
+                <option value="venta">Venta</option>
+                <option value="alquiler">Alquiler</option>
+              </select>
+              <label for="tipo">Tipo: </label>
+              <select size="1" [(ngModel)]="newPiso.tipo" name="tipo" value="piso">
+                <option value="piso">Piso</option>
+                <option value="casa">Casa</option>
+                <option value="duplex">Duplex</option>
+                <option value="atico">Ático</option>
+              </select>
+            <h4>Información de Contacto</h4>
+            <label for="contact-name">Nombre: </label>
+            <input type="text" [(ngModel)]="newPiso.contacto.nombre" name="nombre">
+            <label for="contact-phone">Teléfono: </label>
+            <input type="tel" [(ngModel)]="newPiso.contacto.telefono" name="telefono">
+            <label for="contact-email">Email: </label>
+            <input type="tel" [(ngModel)]="newPiso.contacto.email" name="email">
+        </div>
+        <div>
+            <h4>Información de Dirección</h4>
+            <select size="1" [(ngModel)]="newPiso.direccion.provincia" name="provincia" value="Madrid">
+                <option value="A Coruna">A Coruna</option>
+                <option value="Alaba">Alaba</option>
+                <option value="Albacete">Albacete</option>
+                <option value="Barcelona">Barcelona</option>
+                <option value="Castellon">Castellon</option>
+                <option value="Cuenca">Cuenca</option>
+                <option value="Huelva">Huelva</option>
+                <option value="Las Palmas">Las Palmas</option>
+                <option value="Madrid">Madrid</option>
+                <option value="Sevilla">Sevilla</option>
+                <option value="Zamora">Zamora</option>
+            </select>
+            <label for="dir-localidad">Localidad: </label>
+            <input type="text" [(ngModel)]="newPiso.direccion.localidad" name="localidad">
+            <label for="dir-calle">Calle: </label>
+            <input type="text" [(ngModel)]="newPiso.direccion.calle" name="calle">
+            <label for="dir-numero">Número: </label>
+            <input type="number" [(ngModel)]="newPiso.direccion.numero" name="numero">
+            <label for="dir-planta">Planta: </label>
+            <input type="number" [(ngModel)]="newPiso.direccion.planta" name="planta">
+            <label for="dir-numPiso">Numero de Piso: </label>
+            <input type="text" [(ngModel)]="newPiso.direccion.numPiso" name="numPiso">
+            <label for="dir-lon">Longitud Ubicacion: </label>
+            <input type="number" [(ngModel)]="newPiso.location.coordinates[0]" name="longitud">
+            <label for="dir-lat">Latitud Ubicacion: </label>
+            <input type="number" [(ngModel)]="newPiso.location.coordinates[1]" name="latitud">
+        </div>
+        <div>
+            <label for="image">Foto principal</label>
+            <input type="text" [(ngModel)]="newPiso.fotos[0]" name="foto">
+        </div>      
+        <div>
+            <label for="precio">Precio: </label>
+            <input type="number" [(ngModel)]="newPiso.precio" name="numero">          
+        </div> 
+        <div>
+            <h4>Caracteristicas</h4>
+            <label for="tamano">Tamaño: </label>
+            <input type="number" [(ngModel)]="newPiso.caracteristicas.tamanom2" name="tamanom2">
+            <label for="numcuartos">Número de Cuartos: </label>
+            <input type="number" [(ngModel)]="newPiso.caracteristicas.numHab" name="numHab"> 
+            <label for="numbanos">Número de Baños: </label>
+            <input type="number" [(ngModel)]="newPiso.caracteristicas.numBan" name="numBan"> 
+        </div>
+    </form>
+    <textarea class="txtArea" [(ngModel)]="newPiso.descripcion" name="descripcion" form="formaPiso">Enter text here...</textarea>
+</div><br>
+<button *ngIf="sessionService.user" (click)="addForm()">Desea publicar un piso?</button>
+
+
+<div class="pisosContainer">
+  <div *ngFor="let piso of service.pisosList | filter:'tipo':patternTipo | filter:'proposito':patternProp | filter:'direccion.localidad':patternLoc | filter:'direccion.calle':patternCalle | filter:'caracteristicas.numHab':patternHab | filter:'caracteristicas.numBan':patternBan | filter:'precio':patternPrecio">
+     <div class="pisoContainer">
          <h4>Localidad {{piso.direccion.localidad}}</h4>
-         <p>{{piso.tipo | titlecase}} en {{piso.proposito}},  Precio: {{piso.precio | currency:'EUR'}}</p>
+         <h5>Calle {{piso.direccion.calle}}</h5>
+         <p>{{piso.tipo | titlecase}} en {{piso.proposito}},  Precio: {{piso.precio | currency:'EUR'}}, Num. Hab: {{piso.caracteristicas.numHab}}, Num. Baños: {{piso.caracteristicas.numBan}}</p>
          <img src="{{piso.fotos[0]}}"><br>
          <a  [routerLink]="['/pisos',piso._id]">Ir a detalle</a>
          <br><br>

@@ -6,7 +6,7 @@
 </div>
 <br>
 <br>
-<div  class="container">
+<div  class="container" >
   <div class="pisoContainer">
     <p >{{pisoDetalle.tipo | titlecase}} en {{pisoDetalle.proposito}}</p>
     <img src="{{pisoDetalle.fotos[0]}}" alt="Piso">
@@ -47,4 +47,5 @@
 </div>
 <agm-map  [latitude]="pisoDetalle.location.coordinates[0]" [longitude]="pisoDetalle.location.coordinates[1]" [zoom]="zoom">
   <agm-marker [latitude]="pisoDetalle.location.coordinates[0]" [longitude]="pisoDetalle.location.coordinates[1]"></agm-marker>
+  <agm-marker [latitude]="serviceLoc.latActual" [longitude]="serviceLoc.lonActual"></agm-marker>
 </agm-map>
