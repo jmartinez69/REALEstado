@@ -20,6 +20,7 @@ import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { LocalizameService } from './services/localizame.service';
 import { FilterPipe } from './pipes/filter';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 
 
@@ -30,7 +31,8 @@ import { FilterPipe } from './pipes/filter';
     SignupComponent,
     PisosListComponent,
     PisoDetalleComponent,
-    FilterPipe
+    FilterPipe,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,

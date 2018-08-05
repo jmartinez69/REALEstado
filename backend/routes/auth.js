@@ -4,6 +4,9 @@ const passport = require('passport');
 const authRoutes = express.Router();
 const User = require("../models/User");
 const nodemailer = require('nodemailer');
+const multer = require("multer");
+const uploadCloud = require('../config/cloudinary');
+const _ = require('lodash');
 
 
 const gmailRESender = process.env.GMAILACC;
@@ -53,7 +56,7 @@ authRoutes.post('/login', (req, res, next) => {
 });
 
 
-authRoutes.post("/signup", (req, res, next) => {
+authRoutes.post("/signup", uploadCloud.single('file'), (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
@@ -67,20 +70,29 @@ authRoutes.post("/signup", (req, res, next) => {
       res.status(400).json({ message: 'El nombre de usuario ya existe' });
       return;
     }
-
-    const salt = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync(password, salt);
-    const hasConfCode = bcrypt.hashSync(username, salt);
-    const subject = "Correo de confirmación RealEstado";
-    const message=process.env.CONFIRMROUTE+hasConfCode.replace(/\//gi, "");
-    const newUser = new User({
+    const hashPass = bcrypt.hashSync(password, bcryptSalt);    
+    const hasConfCode = bcrypt.hashSync(username, bcryptSalt);
+    object = {
       username,
       password: hashPass,
       email,
       confirmationCode: hasConfCode.replace(/\//gi, "")
-    });
-    console.log(`Usuario a crear: ${newUser}`)
-    newUser.save((err) => {
+    }
+//    const object = _.pickBy(req.body, (e,k) => paths.includes(k));
+    if (req.file.url) object.avatar = req.file.url;
+
+
+
+    const subject = "Correo de confirmación RealEstado";
+    const message=process.env.CONFIRMROUTE+hasConfCode.replace(/\//gi, "");
+    // const newUser = new User({
+    //    username,
+    //    password: hashPass,
+    //    email,
+    //    confirmationCode: hasConfCode.replace(/\//gi, "")
+    //  });
+    //  console.log(`Usuario a crear: ${newUser}`)
+ /*   newUser.save((err) => {
       if (err) {
         res.status(400).json({ message: 'Algo ha ido mal con la creación del usuario' });
       } else{
@@ -94,7 +106,22 @@ authRoutes.post("/signup", (req, res, next) => {
         .then(info =>  console.log(`Mensaje enviado a ${email}`))
         .catch(error => console.log(`Error en el envío de correo de confirmación: ${error}`));
       }
-    });
+    });*/
+    User.create(object)
+    .then( obj => {
+        console.log('obj');
+        console.log(obj);
+        res.status(200).json(obj);
+        transporter.sendMail({
+          from: `"RealEstado 👻" <${gmailRESender}>`,
+          to: email, 
+          subject: subject, 
+          html: `<b>${message}</b>`
+        })
+        .then(info =>  console.log(`Mensaje enviado a ${email}`))
+        .catch(error => console.log(`Error en el envío de correo de confirmación: ${error}`));
+    })
+    .catch(e => next(e))
   });
 });
 
