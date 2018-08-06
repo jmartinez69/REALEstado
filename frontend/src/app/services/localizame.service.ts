@@ -22,11 +22,8 @@ export class LocalizameService {
 
   constructor() {   
      this.geolocate().then(position  => {
-    // User granted permission
       this.lonActual = position.lng;
       this.latActual = position.lat;
-      console.log('coordenadas ' + this.latActual + ', ' + this.lonActual);
-      //console.log(`Estoy dentro del constructor de localizame: ${position}`)
  })
 }
 
@@ -61,15 +58,7 @@ export class LocalizameService {
   }
 
 
-//   geolocate().then(position => {
-//     // User granted permission
-//      const myMarker = new google.maps.Marker({
-//        position,
-//        map: map,
-//        title: "I'm here"
-//      });
-//      map.setCenter(position);
-//  })
+
 
 
 }

@@ -42,6 +42,8 @@ export class PisoDetalleComponent implements OnInit {
   };
   pisoID: string;
   zoom: Number = 15;
+  markIni: string = "I";
+  markPiso: string = "P";
 
 
   constructor(public service:REPisosService, private route: ActivatedRoute, public serviceLoc: LocalizameService) {

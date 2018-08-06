@@ -46,6 +46,6 @@
   </div>
 </div>
 <agm-map  [latitude]="pisoDetalle.location.coordinates[0]" [longitude]="pisoDetalle.location.coordinates[1]" [zoom]="zoom">
-  <agm-marker [latitude]="pisoDetalle.location.coordinates[0]" [longitude]="pisoDetalle.location.coordinates[1]"></agm-marker>
-  <agm-marker [latitude]="serviceLoc.latActual" [longitude]="serviceLoc.lonActual"></agm-marker>
+  <agm-marker [label]="markPiso" [latitude]="pisoDetalle.location.coordinates[0]" [longitude]="pisoDetalle.location.coordinates[1]"></agm-marker>
+  <agm-marker [label]="markIni"[latitude]="serviceLoc.latActual" [longitude]="serviceLoc.lonActual"></agm-marker>
 </agm-map>

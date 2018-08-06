@@ -8,7 +8,7 @@ const trackingSchema = new Schema({
                 type: {
                     type: String
                 },
-                coordinates: [Number]
+                location: [Number]
                 }]
 }, {
   timestamps: {
@@ -16,6 +16,11 @@ const trackingSchema = new Schema({
     updatedAt: 'updated_at'
   }
 });
+/*
+trackingSchema.index({
+  geotracking: '2dsphere'
+});
+*/
 
 const Tracking = mongoose.model('Tracking', trackingSchema);
-module.exports = Traking;
+module.exports = Tracking;

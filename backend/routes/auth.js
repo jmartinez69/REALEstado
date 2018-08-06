@@ -3,6 +3,7 @@ const express = require("express");
 const passport = require('passport');
 const authRoutes = express.Router();
 const User = require("../models/User");
+const Track = require("../models/Traking")
 const nodemailer = require('nodemailer');
 const multer = require("multer");
 const uploadCloud = require('../config/cloudinary');
@@ -49,7 +50,6 @@ authRoutes.post('/login', (req, res, next) => {
         return;
       }
 
-      // We are now logged in (notice req.user)
       res.status(200).json(req.user);
     });
   })(req, res, next);
@@ -85,28 +85,7 @@ authRoutes.post("/signup", uploadCloud.single('file'), (req, res, next) => {
 
     const subject = "Correo de confirmación RealEstado";
     const message=process.env.CONFIRMROUTE+hasConfCode.replace(/\//gi, "");
-    // const newUser = new User({
-    //    username,
-    //    password: hashPass,
-    //    email,
-    //    confirmationCode: hasConfCode.replace(/\//gi, "")
-    //  });
-    //  console.log(`Usuario a crear: ${newUser}`)
- /*   newUser.save((err) => {
-      if (err) {
-        res.status(400).json({ message: 'Algo ha ido mal con la creación del usuario' });
-      } else{
-        res.status(200).json({ message: 'Usuario creado satisfactoriamente' });       
-        transporter.sendMail({
-          from: `"RealEstado 👻" <${gmailRESender}>`,
-          to: email, 
-          subject: subject, 
-          html: `<b>${message}</b>`
-        })
-        .then(info =>  console.log(`Mensaje enviado a ${email}`))
-        .catch(error => console.log(`Error en el envío de correo de confirmación: ${error}`));
-      }
-    });*/
+
     User.create(object)
     .then( obj => {
         console.log('obj');
@@ -158,6 +137,50 @@ authRoutes.get('/loggedin', (req, res, next) => {
 authRoutes.post('/logout', (req, res, next) => {
   req.logout();
   res.status(200).json({ message: 'Logout exitoso' });
+});
+
+authRoutes.post('/registerLoc', (req,res,next) => {
+  const { coords, user} = req.body;
+
+  console.log(`user vale lo siguiente:====`);
+  console.log(user);
+  console.log(`coords vale lo siguiente:=====`);
+  console.log(coords);
+
+  const geotracking = {
+    type: "Point",
+    location: [coords.lat, coords.lon]
+  };
+  Track.findOne({idUser : user._id}).then(userLogged => {
+    if (userLogged === null) {
+      object = {
+        idUser: user._id,
+        geotracking : [geotracking]
+      };
+      Track.create(object)
+      .then( obj => {
+          res.status(200).json(obj);
+        })
+      .catch(e => next(e))     
+    }else {
+ //     res.status(200).json(piso);
+        Track.findOneAndUpdate({idUser : user._id}, {
+          $push: { geotracking }
+        }).then ((salida)=>{
+            console.log("INSERTADO POSICION EN BD TRACKING")
+            console.log(salida);
+            res.status(200).json(salida);
+        })
+        .catch (err => {
+          console.log(err);
+          res.status(400).json({ message: 'Algo ha salido guardando el GEO tracking' });
+        })
+    }
+  })
+  .catch (err => {
+        console.log(err);
+        res.status(400).json({ message: 'Algo ha salido mal con la busqueda del usuario en tracking' });
+      })
 });
 
 module.exports = authRoutes;

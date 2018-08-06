@@ -15,17 +15,16 @@ const {BASEURL} = environment;
 })
 export class REPisosService {
   lat: Number = 0;
-  lng: Number =- 0; 
+  lng: Number = 0; 
 
   pisosList;
   constructor(private http:Http, private sessionService:REsessionService, private localizameService: LocalizameService) {  }
 
   getListPisos(){
 
-    console.log("Atributos del servicio: ", this.localizameService.lonActual, " ", this.localizameService.latActual)
      this.lat = this.localizameService.latActual;
      this.lng = this.localizameService.lonActual;
- // })
+
    console.log(`Estoy posicionado en: ${this.lat} y ${this.lng}`)
    if (this.sessionService.userIsLogged()){
       return this.http.post(`${BASEURL}/pisos`, {lat: this.lat , lon:this.lng}).pipe(

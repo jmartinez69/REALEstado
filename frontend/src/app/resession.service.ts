@@ -5,6 +5,7 @@ import { Http, Response } from '@angular/http';
 import {map, catchError} from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { environment } from '../environments/environment';
+import { LocalizameService } from './services/localizame.service';
 
 const {BASEURL} = environment;
 
@@ -19,13 +20,16 @@ interface UserObject{
 })
 export class REsessionService {
 
-  user:UserObject;
+  user:UserObject = null;
 
   options:object = {withCredentials:true};
+  userGeoLoc: Array<object>;
+  setIntervalId: any;
 
 
-  constructor(private http:Http) {
+  constructor(private http:Http, locService: LocalizameService) {
    // this.isLogged().subscribe();
+
   }
 
   userIsLogged():Boolean {
@@ -72,11 +76,31 @@ export class REsessionService {
     return this.http.post(`${BASEURL}/auth/login`,{username,password},this.options).pipe(
       map( (res:Response) => {
         let user = res.json();
-
         this.user = user;
+    
         console.log("El login devuelve lo siguiente ===");
         console.log(this.user);
         return this.user;
+
+      }),
+      catchError( e => of(this.errorHandler(e)))
+    )
+  }
+
+  saveLocation(lat:number, lon:number): Observable<object>{
+    let coords = {
+      lat,
+      lon
+    }
+    let user = this.user;
+    return this.http.post(`${BASEURL}/auth/registerLoc`,{ user , coords} ).pipe(
+      map( (res:Response) => {
+        let loc = res.json();
+
+    
+        console.log("La localización devuelve lo siguiente ===");
+        console.log(loc);
+        return loc;
 
       }),
       catchError( e => of(this.errorHandler(e)))
