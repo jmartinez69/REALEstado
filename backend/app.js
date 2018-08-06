@@ -97,5 +97,7 @@ app.use('/auth', authRoutes);
 const pisoRoutes = require('./routes/piso');
 app.use('/pisos', pisoRoutes);
       
+const valoracionRoutes = require('./routes/valoracion');
+app.use('/valoracion', valoracionRoutes);
 
 module.exports = app;

@@ -28,7 +28,7 @@
     <br>
     <br>
     <span>
-      <b>Caracteristicas:</b> {{pisoDetalle.caracteristicas.tamanom2}}m2 Hab: {{pisoDetalle.caracteristicas.numHab}} Baños: {{pisoDetalle.caracteristicas.numBan}}
+      <b>Caracteristicas:</b> {{pisoDetalle.caracteristicas.tamanom2}} m2 Hab: {{pisoDetalle.caracteristicas.numHab}} Baños: {{pisoDetalle.caracteristicas.numBan}}
     </span>
     <br>
     <br>
@@ -45,6 +45,8 @@
     <a [routerLink]="['/']">Go Home</a>
   </div>
 </div>
+<button class="botonverValoracion" (click)="verVal()" value="val" >Ver valoracion</button>
+<app-valorar-piso [pisoDetalle]="pisoDetalle"  *ngIf="verValoracion == true"></app-valorar-piso>
 <agm-map  [latitude]="pisoDetalle.location.coordinates[0]" [longitude]="pisoDetalle.location.coordinates[1]" [zoom]="zoom">
   <agm-marker [label]="markPiso" [latitude]="pisoDetalle.location.coordinates[0]" [longitude]="pisoDetalle.location.coordinates[1]"></agm-marker>
   <agm-marker [label]="markIni"[latitude]="serviceLoc.latActual" [longitude]="serviceLoc.lonActual"></agm-marker>

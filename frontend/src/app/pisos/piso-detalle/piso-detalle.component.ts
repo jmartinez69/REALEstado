@@ -12,6 +12,7 @@ import { LocalizameService } from '../../services/localizame.service';
 export class PisoDetalleComponent implements OnInit {
 
   pisoDetalle: Object = {
+    _id: "",
     proposito: "",
     contacto: {
       nombre: "",
@@ -44,6 +45,7 @@ export class PisoDetalleComponent implements OnInit {
   zoom: Number = 15;
   markIni: string = "I";
   markPiso: string = "P";
+  verValoracion: boolean = false;
 
 
   constructor(public service:REPisosService, private route: ActivatedRoute, public serviceLoc: LocalizameService) {
@@ -51,18 +53,22 @@ export class PisoDetalleComponent implements OnInit {
     .subscribe((params) => this.pisoID = params['id']);
     service.getPiso(this.pisoID).subscribe( piso => {    
       this.pisoDetalle = piso;
+      this.pisoID = piso._id;
       console.log("A continuacion piso detalle =========")
       console.log(this.pisoDetalle);
-      console.log(this.zoom);
+      console.log(this.pisoID);
 
       });
 
       
     };
   
-
-
   ngOnInit() {
+  }
+
+  verVal(){
+    this.verValoracion = !this.verValoracion;
+    console.log("el valor de valoracion es: "+this.verValoracion);
   }
 
 }
