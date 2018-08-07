@@ -1,0 +1,9 @@
+.valContainer {
+  height:20vh;
+  width: 50%;
+  overflow: scroll;
+}
+
+.valContainerItem{
+  overflow: hidden;
+}

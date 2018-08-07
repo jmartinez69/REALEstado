@@ -56,10 +56,6 @@ export class PisoDetalleComponent implements OnInit {
     service.getPiso(this.pisoID).subscribe( piso => {    
       this.pisoDetalle = piso;
       this.pisoID = piso._id;
-      console.log("A continuacion piso detalle =========")
-      console.log(this.pisoDetalle);
-      console.log(this.pisoID);
-
       });
 
       
@@ -70,7 +66,6 @@ export class PisoDetalleComponent implements OnInit {
 
   verVal(){
     this.verValoracion = !this.verValoracion;
-    console.log("el valor de valoracion es: "+this.verValoracion);
   }
 
 }

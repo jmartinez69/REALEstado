@@ -113,8 +113,8 @@
   <div *ngFor="let piso of service.pisosList | filter:'tipo':patternTipo | filter:'proposito':patternProp | filter:'direccion.localidad':patternLoc | filter:'direccion.calle':patternCalle | filter:'caracteristicas.numHab':patternHab | filter:'caracteristicas.numBan':patternBan | filter:'precio':patternPrecio">
      <div class="pisoContainer">
          <h4>Localidad {{piso.direccion.localidad}}</h4>
-         <h5>Calle {{piso.direccion.calle}}</h5>
-         <p>{{piso.tipo | titlecase}} en {{piso.proposito}},  Precio: {{piso.precio | currency:'EUR'}}, Num. Hab: {{piso.caracteristicas.numHab}}, Num. Baños: {{piso.caracteristicas.numBan}}</p>
+         <p><b>Calle</b> {{piso.direccion.calle}}</p>
+         <p><b>{{piso.tipo | titlecase}}</b> en <b>{{piso.proposito}}</b>,  <b>Precio:</b> {{piso.precio | currency:'EUR'}}, <b>Num. Hab:</b> {{piso.caracteristicas.numHab}}, <b>Num. Baños:</b> {{piso.caracteristicas.numBan}}</p>
          <img src="{{piso.fotos[0]}}"><br>
          <a  [routerLink]="['/pisos',piso._id]">Ir a detalle</a>
          <br><br>

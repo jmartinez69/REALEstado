@@ -29,7 +29,15 @@ export class ValoracionService {
      );    
     }
 
-  addValoracion(pisoId: string, userId, ){
-
-  }
+  addValoracion(idPiso: string, idUser: string, valoracion: object ){
+    console.log("Dentro de adedValoracion =====");
+    return this.http.post(`${BASEURL}/valoracion/add`, {idPiso, idUser , valoracion }).pipe(
+      map( (res:Response) => {
+        this.valoracionList = res.json();
+        return res.json();
+      }),
+      catchError(e => {console.log("Error insertando publicación de valoración!"); return of(e)})
+    );    
+   }    
 }
+

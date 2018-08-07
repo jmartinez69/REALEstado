@@ -1,9 +1,30 @@
+<div class="addValForm" *ngIf="addValEnable == true">
+    <form  name="opinion">
+          <button class="botonAddVal" (click)="newValor()" value="valoracion">Publicar</button>
+          <div>
+              <label for="proposito">Proposito: </label>
+              <select size="1" [(ngModel)]="addValoracion.puntuacion" name="puntuacion" value="5">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                <label for="tipo">Comentario: </label>
+                <input type="text" [(ngModel)]="addValoracion.comentario" name="comentario">
+          </div>    
+    </form>
+</div>
+<button *ngIf="sessionService.user" (click)="addValorForm()">Desea hacer una valoración?</button>
+
 <div class="valContainer">
+  <p><b>Average Valoracion: </b>{{avgValoracion}}</p>
   <div *ngFor="let valoracion of listaValoracion">
-     <div class="valContainer">
-         <h4>Puntuacion: {{valoracion.puntuacion}}</h4>
+     <div class="valContainerItem">
+         <p><b>Puntuacion:</b> {{valoracion.puntuacion}}</p>
          <p><b>Comentario:</b> {{valoracion.comentario}}</p>
-         <br><br>
+         <p><b>Publicación:</b> {{valoracion.updated_at | date}}</p>
+         <br>
      </div>
   </div>
 </div>
