@@ -6,7 +6,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-const DATABASE = "mongodb://realestadoal:Realestado_71@ds157185.mlab.com:57185/realestado";
+const DATABASE = process.env.REALESTADODB;
 mongoose.connect(DATABASE);
 
 
