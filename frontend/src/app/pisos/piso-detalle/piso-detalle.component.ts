@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { GoogleMapsAPIWrapper } from '@agm/core';
 import { LocalizameService } from '../../services/localizame.service';
 
+
+
 @Component({
   selector: 'app-piso-detalle',
   templateUrl: './piso-detalle.component.html',
@@ -11,7 +13,7 @@ import { LocalizameService } from '../../services/localizame.service';
 })
 export class PisoDetalleComponent implements OnInit {
 
-  pisoDetalle: Object = {
+  pisoDetalle: any = {
     _id: "",
     proposito: "",
     contacto: {

@@ -21,7 +21,7 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { LocalizameService } from './services/localizame.service';
 import { FilterPipe } from './pipes/filter';
 import { ValorarPisoComponent } from './pisos/valorar-piso/valorar-piso.component';
-import { FileSelectDirective } from 'ng2-file-upload';
+import {  FileUploadModule } from 'ng2-file-upload';
 import { ValoracionService } from './services/valoracion.service';
 
 
@@ -34,7 +34,6 @@ import { ValoracionService } from './services/valoracion.service';
     PisosListComponent,
     PisoDetalleComponent,
     FilterPipe,
-    FileSelectDirective,
     ValorarPisoComponent
   ],
   imports: [
@@ -42,6 +41,7 @@ import { ValoracionService } from './services/valoracion.service';
     RouterModule.forRoot(routes),
     FormsModule,
     HttpModule,
+    FileUploadModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyClr_fVK41OBJxuab_HEI3I30pcijqHB7E'
     }),

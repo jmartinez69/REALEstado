@@ -38,6 +38,15 @@ interface Piso {
   styleUrls: ["./pisos-list.component.css"]
 })
 export class PisosListComponent implements OnInit {
+
+  patternTipo;
+  patternProp;
+  patternLoc;
+  patternCalle;
+  patternHab;
+  patternBan;
+  patternPrecio;
+
   newPiso: object = {
     idUser: "",
     proposito: "",

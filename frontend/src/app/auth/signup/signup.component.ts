@@ -14,6 +14,11 @@ const {BASEURL} = environment;
 })
 export class SignupComponent implements OnInit {
 
+  username;
+  password;
+  email;
+  error;
+
   uploader: FileUploader = new FileUploader({
     url: `${BASEURL}/auth/signup`,
     method: 'POST'
