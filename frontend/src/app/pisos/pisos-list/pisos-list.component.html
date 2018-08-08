@@ -102,8 +102,9 @@
     </form>
     <textarea class="txtArea" [(ngModel)]="newPiso.descripcion" name="descripcion" form="formaPiso">Enter text here...</textarea>
 </div><br>
-<button *ngIf="sessionService.user" class="btn btn-primary" (click)="addForm()">Desea publicar un piso?</button>
-
+<div class="botonNewPiso">
+    <button *ngIf="sessionService.user" class="btn btn-primary" (click)="addForm()">Desea publicar un piso?</button>
+</div>
 
 <div class="pisosContainer">
         <div class="Ironhack">

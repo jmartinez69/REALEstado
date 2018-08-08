@@ -1,14 +1,14 @@
 <div class="Ironhack">
   <h4>
     <img src="assets/Ironhack.png">
-    <h3>REALEstado</h3>
+    <h3>REALEstado!</h3>
   </h4>
 </div>
 <br>
 <br>
 <div  class="container" >
   <div class="pisoContainer">
-    <p >{{pisoDetalle.tipo | titlecase}} en {{pisoDetalle.proposito}}</p>
+    <h4>{{pisoDetalle.tipo | titlecase}} en {{pisoDetalle.proposito}}</h4>
     <img src="{{pisoDetalle.fotos[0]}}" alt="Piso">
     <span *ngFor="let foto of pisoDetalle.fotos">
         <img class="fotos" src="{{foto}}">
@@ -28,31 +28,35 @@
     <span>
       <b>Fecha Publicación:</b> {{pisoDetalle.fechaPublicacion | date}}
     </span>
-    <br>
-    <br>
+    <br><br>
     <span>
       <b>Caracteristicas:</b> {{pisoDetalle.caracteristicas.tamanom2}} m2 Hab: {{pisoDetalle.caracteristicas.numHab}} Baños: {{pisoDetalle.caracteristicas.numBan}}
     </span>
-    <br>
-    <br>
+    <br><br>
     <span>
       <b>Sinopsis</b>
       <br>{{pisoDetalle.descripcion}}
     </span>
-    <br>
-    <br>
+    <br><br>
     <span>
     <b>Telefono contacto:</b> {{pisoDetalle.contacto.telefono}}
     </span>
-    <br>
-    <button class="btn btn-primary buttonCenter" (click)="verVal()" value="val" >Ver valoracion</button>
-    <app-valorar-piso [pisoDetalle]="pisoDetalle"  *ngIf="verValoracion == true"></app-valorar-piso>
     <br><br>
-    <a [routerLink]="['/']">Go Home</a>
+    <span>
+    <b>email contacto:</b> {{pisoDetalle.contacto.email}}
+    </span>
+    <br><br>
+    <button class="btn btn-primary buttonCenter" (click)="verVal()" value="val" >Ver valoración</button>
+    <br><br>
+    <app-valorar-piso class="valoracion" [pisoDetalle]="pisoDetalle"  *ngIf="verValoracion == true"></app-valorar-piso>
+    <br><br>
+
+    <agm-map  [latitude]="pisoDetalle.location.coordinates[0]" [longitude]="pisoDetalle.location.coordinates[1]" [zoom]="zoom">
+        <agm-marker [label]="markPiso" [latitude]="pisoDetalle.location.coordinates[0]" [longitude]="pisoDetalle.location.coordinates[1]"></agm-marker>
+        <agm-marker [label]="markIni"[latitude]="serviceLoc.latActual" [longitude]="serviceLoc.lonActual"></agm-marker>
+      </agm-map>
+      <br>
+      <a [routerLink]="['/']">Go Home</a>
   </div>
 </div>
-
-<agm-map  [latitude]="pisoDetalle.location.coordinates[0]" [longitude]="pisoDetalle.location.coordinates[1]" [zoom]="zoom">
-  <agm-marker [label]="markPiso" [latitude]="pisoDetalle.location.coordinates[0]" [longitude]="pisoDetalle.location.coordinates[1]"></agm-marker>
-  <agm-marker [label]="markIni"[latitude]="serviceLoc.latActual" [longitude]="serviceLoc.lonActual"></agm-marker>
-</agm-map>
+<div class="footerPisoDetalle">Footer</div>

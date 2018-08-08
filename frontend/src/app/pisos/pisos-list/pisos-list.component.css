@@ -33,7 +33,7 @@
   border: 2px solid rgb(144, 146, 141);
   padding: 20px; 
   width: 250px;
-  height: 500px;   
+  height: 530px;   
 }
 
 .addPisoForm {
@@ -49,4 +49,9 @@
 .txtArea{
   width: 122vh;
   height: 40vh;
+}
+.botonNewPiso {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0px 50px;
 }
