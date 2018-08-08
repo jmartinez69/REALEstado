@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ValoracionService } from '../../services/valoracion.service';
 import { ActivatedRoute } from '@angular/router';
 import { REsessionService } from '../../resession.service';
+import { TrackingService } from '../../services/tracking.service';
 
 @Component({
   selector: 'app-valorar-piso',
@@ -23,25 +24,45 @@ export class ValorarPisoComponent implements OnInit {
   };  
   valorPiso: Number = 0;
   addValEnable: Boolean = false;
+  puedeValorar: Boolean = true;
   listaValoracion: Array<any> = [];
   avgValoracion: Number =0;
+  listaTraking: any = [];
 
-  constructor(public valService: ValoracionService, private route: ActivatedRoute, public sessionService: REsessionService) {
+  constructor(public valService: ValoracionService, private route: ActivatedRoute, public sessionService: REsessionService, public trackingService: TrackingService) {
    }
 
 
 
   ngOnInit() {
-    console.log(this.pisoDetalle);
+    if (this.sessionService.userIsLogged()) {
+      let idUser=this.sessionService.user._id;
+      this.trackingService.getTracking(idUser).subscribe( tracking => {
+        console.log("Llamando al servicio getTracking y devuelve: ");
+        console.log(tracking);
+        this.listaTraking = tracking;
+        console.log("coordenadas del segundo punto (primero del arreglo");
+        console.log(this.listaTraking[0].geotracking[0].location);
+        console.log(this.pisoDetalle.location.coordinates);
+        if (!this.pasoPorAhi(this.listaTraking, this.pisoDetalle.location.coordinates)){
+            this.puedeValorar = false;
+        }
+      })    
+    }
+
       this.valService.getListValoracion(this.pisoDetalle._id).subscribe(lista => {
       this.listaValoracion = lista;
+      console.log("Esta es la lista de valoracion");
       console.log(lista);
-      let sum = 0;
-      for (let i=0; i < lista.length ; i++){
-        sum += lista[i].puntuacion;
+      if ( lista.length != 0) {
+        let sum = 0;
+        for (let i=0; i < lista.length ; i++){
+          sum += lista[i].puntuacion;
+        }
+          this.avgValoracion = parseFloat((sum / lista.length).toFixed(2));
+      } else {
+        this.avgValoracion = 0;
       }
-      this.avgValoracion = parseFloat((sum / lista.length).toFixed(2));
-      console.log("Resultado del average: " + this.avgValoracion);
 
     }); 
   }
@@ -55,8 +76,10 @@ export class ValorarPisoComponent implements OnInit {
     this.valService.addValoracion(idPiso, idUser, this.addValoracion).subscribe( comment => {    
       console.log("A continuacion detalle del comentario =========")
       console.log(comment);
+
       this.addValEnable = !this.addValEnable;  
     });
+
   }
 
 distanceBPoints(lat1: number,lon1: number, lat2:number, lon2: number) {
@@ -73,5 +96,21 @@ distanceBPoints(lat1: number,lon1: number, lat2:number, lon2: number) {
 
   let d = R * c;
   return d;
-}
+  }
+  pasoPorAhi(arrTrack:any, coordPiso: any){
+    let distancia = 2000;
+    for (let i=0; i < arrTrack[0].geotracking.length; i++){
+      distancia=this.distanceBPoints( 
+        arrTrack[0].geotracking[i].location[0],
+        arrTrack[0].geotracking[i].location[1],
+        coordPiso[0],
+        coordPiso[1]        
+      );
+      console.log("Distancia entre los dos puntos es: " + distancia);
+      if (distancia <= 1000){
+        return true;    
+      }
+    }
+    return false;
+  }
 }

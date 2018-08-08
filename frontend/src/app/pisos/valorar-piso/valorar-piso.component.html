@@ -15,7 +15,7 @@
           </div>    
     </form>
 </div>
-<button *ngIf="sessionService.user" (click)="addValorForm()">Desea hacer una valoración?</button>
+<button *ngIf="sessionService.user && puedeValorar" (click)="addValorForm()">Desea hacer una valoración?</button>
 
 <div class="valContainer">
   <p><b>Average Valoracion: </b>{{avgValoracion}}</p>

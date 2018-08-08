@@ -23,6 +23,7 @@ import { FilterPipe } from './pipes/filter';
 import { ValorarPisoComponent } from './pisos/valorar-piso/valorar-piso.component';
 import {  FileUploadModule } from 'ng2-file-upload';
 import { ValoracionService } from './services/valoracion.service';
+import { TrackingService } from './services/tracking.service';
 
 
 
@@ -50,7 +51,8 @@ import { ValoracionService } from './services/valoracion.service';
   providers: [REsessionService,
               REPisosService,
               LocalizameService,
-              ValoracionService],
+              ValoracionService,
+              TrackingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
