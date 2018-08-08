@@ -149,7 +149,8 @@ authRoutes.post('/registerLoc', (req,res,next) => {
 
   const geotracking = {
     type: "Point",
-    location: [coords.lat, coords.lon]
+    location: [coords.lat, coords.lon],
+    fechaPoint: new Date()
   };
   Track.findOne({idUser : user._id}).then(userLogged => {
     if (userLogged === null) {

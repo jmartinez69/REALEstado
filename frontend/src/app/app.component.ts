@@ -27,7 +27,7 @@ export class AppComponent {
      })
             console.log("Guardando geo localizacion")
           }
-        },300000);   
+        },150000);   
    }
 
   logout(){

@@ -8,7 +8,8 @@ const trackingSchema = new Schema({
                 type: {
                     type: String
                 },
-                location: [Number]
+                location: [Number],
+                fechaPoint: Date
                 }]
 }, {
   timestamps: {

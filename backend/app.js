@@ -100,4 +100,7 @@ app.use('/pisos', pisoRoutes);
 const valoracionRoutes = require('./routes/valoracion');
 app.use('/valoracion', valoracionRoutes);
 
+const trackingRoutes = require('./routes/tracking');
+app.use('/tracking', trackingRoutes);
+
 module.exports = app;

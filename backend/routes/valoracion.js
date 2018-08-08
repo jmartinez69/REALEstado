@@ -8,7 +8,7 @@ const Valoracion = require("../models/Valoracion");
 valoracionRoutes.get("/:id", (req, res, next) => {
   const user = res.locals.user;
   const idPiso= req.params.id;
-  Valoracion.find({idPiso}).sort({ updated_at: -1 }).then(valoracionesPiso => {
+  Valoracion.find({idPiso}).then(valoracionesPiso => {
     if (valoracionesPiso === null) {
       res.status(200).json({ message: 'no' });
     }else {
