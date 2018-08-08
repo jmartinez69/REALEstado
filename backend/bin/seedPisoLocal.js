@@ -2,6 +2,9 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const Piso = require("../models/Piso");
 const User = require("../models/User");
+const Tracking = require("../models/Tracking");
+const Valoracion = require("../models/Valoracion");
+
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
