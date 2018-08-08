@@ -21,14 +21,10 @@
     <label>Precio hasta: </label>
     <input type="number"   [(ngModel)]="patternPrecio">
     <br> 
-  </div><br><br>
+  </div>
 
 
-<div class="Ironhack">
-  <h4><img src="assets/Ironhack.png">
-    <h3>Pisos REALEstado</h3>
-  </h4>
-</div>
+
 
 
 
@@ -106,11 +102,16 @@
     </form>
     <textarea class="txtArea" [(ngModel)]="newPiso.descripcion" name="descripcion" form="formaPiso">Enter text here...</textarea>
 </div><br>
-<button *ngIf="sessionService.user" (click)="addForm()">Desea publicar un piso?</button>
+<button *ngIf="sessionService.user" class="btn btn-primary" (click)="addForm()">Desea publicar un piso?</button>
 
 
 <div class="pisosContainer">
-  <div *ngFor="let piso of service.pisosList | filter:'tipo':patternTipo | filter:'proposito':patternProp | filter:'direccion.localidad':patternLoc | filter:'direccion.calle':patternCalle | filter:'caracteristicas.numHab':patternHab | filter:'caracteristicas.numBan':patternBan | filter:'precio':patternPrecio">
+        <div class="Ironhack">
+                <h4><img src="assets/Ironhack.png">
+                  <h3>Pisos REALEstado</h3>
+                </h4>
+              </div>
+  <div class="pisosssss" *ngFor="let piso of service.pisosList | filter:'tipo':patternTipo | filter:'proposito':patternProp | filter:'direccion.localidad':patternLoc | filter:'direccion.calle':patternCalle | filter:'caracteristicas.numHab':patternHab | filter:'caracteristicas.numBan':patternBan | filter:'precio':patternPrecio">
      <div class="pisoContainer">
          <h4>Localidad {{piso.direccion.localidad}}</h4>
          <p><b>Calle</b> {{piso.direccion.calle}}</p>

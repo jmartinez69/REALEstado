@@ -14,11 +14,17 @@ mongoose.connect(DATABASE);
 
 
 Piso.collection.drop();
+User.collection.drop();
+Tracking.collection.drop();
+Valoracion.collection.drop();
 
 fechaToday= new Date();
 
 
 
+
+
+const user = [];
 
 const pisos = [
   {

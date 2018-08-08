@@ -38,14 +38,14 @@ export class ValorarPisoComponent implements OnInit {
     if (this.sessionService.userIsLogged()) {
       let idUser=this.sessionService.user._id;
       this.trackingService.getTracking(idUser).subscribe( tracking => {
-        console.log("Llamando al servicio getTracking y devuelve: ");
         console.log(tracking);
         this.listaTraking = tracking;
-        console.log("coordenadas del segundo punto (primero del arreglo");
-        console.log(this.listaTraking[0].geotracking[0].location);
-        console.log(this.pisoDetalle.location.coordinates);
-        if (!this.pasoPorAhi(this.listaTraking, this.pisoDetalle.location.coordinates)){
-            this.puedeValorar = false;
+        if (tracking.length > 0) {
+            if (!this.pasoPorAhi(this.listaTraking, this.pisoDetalle.location.coordinates)){
+                this.puedeValorar = false;
+            }
+        } else {
+                this.puedeValorar = false;          
         }
       })    
     }

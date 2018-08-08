@@ -10,6 +10,9 @@
   <div class="pisoContainer">
     <p >{{pisoDetalle.tipo | titlecase}} en {{pisoDetalle.proposito}}</p>
     <img src="{{pisoDetalle.fotos[0]}}" alt="Piso">
+    <span *ngFor="let foto of pisoDetalle.fotos">
+        <img class="fotos" src="{{foto}}">
+    </span>
   </div>
   <div class="infoContainer">
     <span>
@@ -38,15 +41,17 @@
     </span>
     <br>
     <br>
-    <span *ngFor="let foto of pisoDetalle.fotos">
-      <img class="fotos" src="{{foto}}">
+    <span>
+    <b>Telefono contacto:</b> {{pisoDetalle.contacto.telefono}}
     </span>
     <br>
+    <button class="btn btn-primary buttonCenter" (click)="verVal()" value="val" >Ver valoracion</button>
+    <app-valorar-piso [pisoDetalle]="pisoDetalle"  *ngIf="verValoracion == true"></app-valorar-piso>
+    <br><br>
     <a [routerLink]="['/']">Go Home</a>
   </div>
 </div>
-<button class="botonverValoracion" (click)="verVal()" value="val" >Ver valoracion</button>
-<app-valorar-piso [pisoDetalle]="pisoDetalle"  *ngIf="verValoracion == true"></app-valorar-piso>
+
 <agm-map  [latitude]="pisoDetalle.location.coordinates[0]" [longitude]="pisoDetalle.location.coordinates[1]" [zoom]="zoom">
   <agm-marker [label]="markPiso" [latitude]="pisoDetalle.location.coordinates[0]" [longitude]="pisoDetalle.location.coordinates[1]"></agm-marker>
   <agm-marker [label]="markIni"[latitude]="serviceLoc.latActual" [longitude]="serviceLoc.lonActual"></agm-marker>

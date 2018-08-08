@@ -8,16 +8,24 @@
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+  
+  padding-left: 250px;
 }
 .pisoContainer {
   flex-wrap: wrap;
   text-align: center;
+  box-shadow: 4px 4px 8px #888888;
+  background-color: #ededed47;
+  padding: 20px; 
+}
+
+.pisosssss {
+  padding: 50px;
 }
 
 .pisoContainer img {
   width: 70%;
   object-fit: cover;
-
 }
 .filtro {
   position: fixed;
