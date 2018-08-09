@@ -29,8 +29,8 @@
 
 
 <div class="addPisoForm" *ngIf="formEnable == true && newPiso">
-  <form  name="formaPiso">
-        <button class="botonAddPiso" (click)="addNewPiso()" value="publicar">Publicar</button>
+  <form>
+        <button class="btn btn-secondary" (click)="addNewPiso()" value="publicar">Publicar</button>
         <div>
             <label for="proposito">Proposito: </label>
             <select size="1" [(ngModel)]="newPiso.proposito" name="proposito" value="Alquiler">
@@ -78,13 +78,13 @@
             <label for="dir-numPiso">Numero de Piso: </label>
             <input type="text" [(ngModel)]="newPiso.direccion.numPiso" name="numPiso">
             <label for="dir-lon">Longitud Ubicacion: </label>
-            <input type="number" [(ngModel)]="newPiso.location.coordinates[0]" name="longitud">
-            <label for="dir-lat">Latitud Ubicacion: </label>
-            <input type="number" [(ngModel)]="newPiso.location.coordinates[1]" name="latitud">
+ <!--           <input type="number" [(ngModel)]="newPiso.location.coordinates[0]" name="longitud">
+            <label for="dir-lat">Latitud Ubicacion: </label> 
+            <input type="number" [(ngModel)]="newPiso.location.coordinates[1]" name="latitud">-->
         </div>
         <div>
             <label for="image">Foto principal</label>
-            <input type="text" [(ngModel)]="newPiso.fotos[0]" name="foto">
+            <input class="form-control" type="file" name="file" ng2FileSelect [uploader]="uploader" />
         </div>      
         <div>
             <label for="precio">Precio: </label>

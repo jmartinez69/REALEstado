@@ -24,7 +24,7 @@ export class AppComponent {
             console.log("Salvada la posicion actual");
             console.log(posActual);
           })
-     })
+        })
             console.log("Guardando geo localizacion")
           }
         },150000);   
