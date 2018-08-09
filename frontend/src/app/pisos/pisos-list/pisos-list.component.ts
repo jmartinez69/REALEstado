@@ -103,7 +103,10 @@ export class PisosListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.formEnable =false;
+    this.filtroEnable=true;
     this.listarPisos();
+
   }
   
   addNewPiso() {
@@ -144,8 +147,8 @@ export class PisosListComponent implements OnInit {
         form.append('tamanom2', this.newPiso.caracteristicas.tamanom2);
         form.append('numHab', this.newPiso.caracteristicas.numHab);                 
         form.append('numBan', this.newPiso.caracteristicas.numBan);  
-        form.append('user', this.sessionService.user); 
-        console.log(form);
+        form.append('userID', this.sessionService.user._id); 
+        console.log(this.sessionService.user._id);
       };
       this.uploader.uploadAll();
       this.uploader.onCompleteItem = () => {

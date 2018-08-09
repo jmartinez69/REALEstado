@@ -94,7 +94,7 @@ pisoRoutes.post("/add", uploadCloud.single('file'), (req, res, next) => {
       const fotoUrl = req.file.url;
 
       const {proposito, nombre, telefono, email, provincia, localidad, calle, numero, planta, numPiso,
-        lat, lon, precio, descripcion, tipo, tamanom2, numHab, numBan, user} = req.body;
+        lat, lon, precio, descripcion, tipo, tamanom2, numHab, numBan, userID} = req.body;
        piso = {
         proposito,
         contacto: {
@@ -125,10 +125,9 @@ pisoRoutes.post("/add", uploadCloud.single('file'), (req, res, next) => {
         },
         fechaPublicacion: new Date(),
       }
-      piso.idUser = user._id;
+      piso.idUser = userID;
       piso.fotos.push(fotoUrl);
       console.log("Esto es lo que esta llegando del front ===============================");
-      console.log(piso);
       console.log(user);
   }
   else {
